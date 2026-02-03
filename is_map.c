@@ -6,7 +6,7 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 19:09:40 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/01/28 14:21:45 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/03 14:26:10 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int check_rectangular(t_game *game)
     width = game->map.width;
     while (i < game->map.height)
     {
-        if ((int)ft_strlen(game->map.grid[i]) != width)
+        if ((size_t)ft_strlen(game->map.grid[i]) != width)
             return (EXIT_FAILURE);
         i++;
     }

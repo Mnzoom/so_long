@@ -6,7 +6,7 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:47:30 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/01/28 23:01:03 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/03 14:24:31 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,16 @@ int load_map(const char *file, t_game *game)
             break;
         game->map.grid[i] = ft_strtrim(line, "\n");
         free(line);
+        if (!game->map.grid[i])
+        {
+            // maybe fonction pour free ? //
+            return (EXIT_FAILURE);
+        }
         i++;
     }
     close (fd);
-    
+    if (i == 0 || !game->map.grid[0])
+        return (EXIT_FAILURE);
     game->map.width = ft_strlen(game->map.grid[0]);
     return (0);
 }

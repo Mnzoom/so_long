@@ -1,6 +1,20 @@
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
+#include <unistd.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include "mlx.h"
+
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 typedef struct s_map
 {
 	char **grid; 
@@ -43,10 +57,6 @@ typedef struct s_game
 	t_img	exit;
 	t_img	collectibles;
 }	t_game;
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
 
 int check_walls(t_game *game);
 int check_rectangular(t_game *game);
