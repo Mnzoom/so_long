@@ -6,13 +6,13 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:55:29 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/05 11:10:48 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 12:33:38 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*read_doc(int fd, char *buf, char *backup)
+char	*read_doc(int fd, char *buf, char *backup)
 {
 	int		read_line;
 	char	*char_temp;
@@ -71,13 +71,13 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE +1));
 	if (!buf)
 		return (NULL);
-	line = read_doc(fd, buf, backup[fd]);
+	line = read_doc(fd, buf, backup);
 	if (line == NULL)
-		free (*backup);
+		free (backup);
 	free(buf);
 	buf = NULL;
 	if (!line)
 		return (NULL);
-	backup[fd] = set_line(line);
+	backup = set_line(line);
 	return (line);
 }

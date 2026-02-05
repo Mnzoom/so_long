@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include "libft/libft.h"
 #include "mlx.h"
+#include "ft_printf/inc/ft_printf.h"
 
 # define KEY_ESC 53
 # define KEY_W 13
@@ -26,7 +27,12 @@ typedef struct s_map
 	int exit_x;
 	int exit_y;
 }   t_map;
-
+typedef struct s_img
+{
+	void    *img_ptr;
+	int width;
+	int height;
+}   t_img;
 typedef struct s_entity
 {
 	int	x;
@@ -38,14 +44,6 @@ typedef struct s_entity
 	int	last_move_time;
 	
 }	t_entity;
-
-typedef struct s_img
-{
-	void    *img_ptr;
-	int width;
-	int height;
-}   t_img;
-
 typedef struct s_game
 {
 	void    *mlx;
@@ -64,20 +62,20 @@ int check_walls(t_game *game);
 int check_rectangular(t_game *game);
 int find_entities(t_game *game);
 int load_map(const char *file, t_game *game);
-static void flood(char **map, int x, int y);
-static char **copy_map(t_game *game);
-static int  check_acces(char **map);
+void flood(char **map, int x, int y);
+char **copy_map(t_game *game);
+int  check_acces(char **map);
 int flood_fill(t_game *game);
 int parse_map(const char *file, t_game *game);
 int init_game(t_game *game);
 int keypress(int keycode, t_game *game);
 void    move_player(t_game *game, int dx, int dy);
-static int  load_sprite(t_game *game, t_img *sprite, char *path);
+int  load_sprite(t_game *game, t_img *sprite, char *path);
 int load_textures(t_game *game);
 void    put_sprite(t_game *game, void *img_ptr, int x, int y);
 int render_map(t_game *game);
 int close_window(t_game *game);
-static char	*read_doc(int fd, char *buf, char *backup);
+char	*read_doc(int fd, char *buf, char *backup);
 char	*set_line(char *line_buffer);
 char	*get_next_line(int fd);
 

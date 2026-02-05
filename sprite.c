@@ -6,13 +6,13 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:38:23 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/03 15:51:02 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 12:34:34 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int  load_sprite(t_game *game, t_img *sprite, char *path)
+int  load_sprite(t_game *game, t_img *sprite, char *path)
 {
     sprite->img_ptr = mlx_png_file_to_image(game->mlx, path, 
         &sprite->width, &sprite->height);

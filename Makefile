@@ -1,50 +1,53 @@
-NAME	= so_long
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -I. -I./mlx
+NAME        = so_long
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -I. -I./mlx -I./libft -I./ft_printf -DGL_SILENCE_DEPRECATION
 
-MLX_DIR	= ./mlx
-MLX_LIB	=  $(MLX_DIR)/libmlx.a
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+MLX_DIR     = ./mlx
+MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -lz
 
-SRCS	= 	main.c \
-			parsing.c \
-			utils.c \
-			gameplay.c \
-			pathfinding.c \
-			is_map.c \
-			sprite.c \
-			utils.c \
+LIBFT_DIR   = ./libft
+PRINTF_DIR  = ./ft_printf
+LIBS        = $(LIBFT_DIR)/libft.a $(PRINTF_DIR)/libftprintf.a
 
-OBJS	=	$(SRCS:.c=.o)
+SRCS        = main.c \
+              parsing.c \
+              gameplay.c \
+              pathfinding.c \
+              is_map.c \
+              sprite.c \
+              game.c \
+              utils.c
+
+OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(MLX_LIB) $(OBJS)
-	$(CC) $(OBJS) $(MLX_FLAGS) -o $(NAME)
-	@echo "so_long compilé avec succès pour macOS M2 !"
-
-# Compilation de la MiniLibX si libmlx.a n'existe pas
-$(MLX_LIB):
-	@echo "🔨 Compilation de la MiniLibX..."
+$(NAME): $(LIBS) $(OBJS)
 	@make -C $(MLX_DIR)
+	$(CC) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
+	@echo "✅ so_long compilé avec succès !"
 
-# Compilation des fichiers .o
+
+$(LIBFT_DIR)/libft.a:
+	@make -C $(LIBFT_DIR)
+
+$(PRINTF_DIR)/libftprintf.a:
+	@make -C $(PRINTF_DIR)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@make -C $(MLX_DIR) clean
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(PRINTF_DIR) clean
 	rm -f $(OBJS)
-	@echo "🧹 Fichiers objets supprimés."
 
 fclean: clean
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(PRINTF_DIR) fclean
 	rm -f $(NAME)
-	@echo "🗑️ Exécutable supprimé."
 
 re: fclean all
 
 .PHONY: all clean fclean re
-			
-
-
-		 

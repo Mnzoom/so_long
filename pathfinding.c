@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:27:03 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/03 14:27:04 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 12:34:07 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h" 
 
-static void flood(char **map, int x, int y)
+void flood(char **map, int x, int y)
 {
     if (map[y][x] == '1' || map[y][x] == 'V')
         return;
@@ -24,7 +24,7 @@ static void flood(char **map, int x, int y)
     flood(map, x, y - 1);
 }
 
-static char **copy_map(t_game *game)
+char **copy_map(t_game *game)
 {
     char **copy;
     int i;
@@ -49,7 +49,7 @@ static char **copy_map(t_game *game)
     return (copy);
 }
 
-static int  check_acces(char **map)
+int  check_acces(char **map)
 {
     int x;
     int y;
