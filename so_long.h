@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include "libft/libft.h"
 #include "mlx.h"
 
 # define KEY_ESC 53
@@ -15,6 +16,7 @@
 # define KEY_DOWN 125
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+# define BUFFER_SIZE 1024
 typedef struct s_map
 {
 	char **grid; 
@@ -67,6 +69,16 @@ static char **copy_map(t_game *game);
 static int  check_acces(char **map);
 int flood_fill(t_game *game);
 int parse_map(const char *file, t_game *game);
-
+int init_game(t_game *game);
+int keypress(int keycode, t_game *game);
+void    move_player(t_game *game, int dx, int dy);
+static int  load_sprite(t_game *game, t_img *sprite, char *path);
+int load_textures(t_game *game);
+void    put_sprite(t_game *game, void *img_ptr, int x, int y);
+int render_map(t_game *game);
+int close_window(t_game *game);
+static char	*read_doc(int fd, char *buf, char *backup);
+char	*set_line(char *line_buffer);
+char	*get_next_line(int fd);
 
 #endif
