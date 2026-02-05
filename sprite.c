@@ -6,7 +6,7 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:38:23 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/05 14:14:00 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 20:38:31 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int  load_sprite(t_game *game, t_img *sprite, char *path)
 {
-    sprite->img_ptr = mlx_png_file_to_image(game->mlx, path, 
+    sprite->img_ptr = mlx_xpm_file_to_image(game->mlx, path, 
         &sprite->width, &sprite->height);
     if (!sprite->img_ptr)
         return(EXIT_FAILURE);
@@ -34,9 +34,10 @@ int load_textures(t_game *game)
 
 void    put_sprite(t_game *game, void *img_ptr, int x, int y)
 {
+    if(!img_ptr)
+        return;
     mlx_put_image_to_window(game->mlx, game->win, img_ptr, x * 64, y * 64);
 }
-
 int render_map(t_game *game)
 {
     int x;
@@ -48,12 +49,13 @@ int render_map(t_game *game)
         x = 0;
         while (x < game->map.width)
         {
+            if (!game->map.grid[y]) 
+                break;
             put_sprite(game, game->floor.img_ptr, x, y);
-            
             if (game->map.grid[y][x] == '1')
                 put_sprite(game, game->wall.img_ptr, x, y);
             else if (game->map.grid[y][x] == 'P')
-                put_sprite(game, game->player.sprite.img_ptr, y, x);
+                put_sprite(game, game->player.sprite.img_ptr, x, y); 
             else if (game->map.grid[y][x] == 'C')
                 put_sprite(game, game->collectibles.img_ptr, x, y);
             else if (game->map.grid[y][x] == 'E')

@@ -62,7 +62,7 @@ int check_walls(t_game *game);
 int check_rectangular(t_game *game);
 int find_entities(t_game *game);
 int load_map(const char *file, t_game *game);
-void flood(char **map, int x, int y);
+void flood(char **map, int x, int y, t_game *game);
 char **copy_map(t_game *game);
 int  check_acces(char **map);
 int flood_fill(t_game *game);

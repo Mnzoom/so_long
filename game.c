@@ -6,14 +6,15 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:31:26 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/05 12:28:02 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 20:34:25 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 int init_game(t_game *game)
 {
+    ft_printf("DEBUG: Width = %d, Height = %d\n", game->map.width, game->map.height);
     game->mlx = mlx_init();
     if (!game->mlx)
         return (EXIT_FAILURE);

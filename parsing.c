@@ -6,7 +6,7 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:47:30 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/03 14:24:31 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 20:56:33 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ int load_map(const char *file, t_game *game)
     if (height == 0)
         return(EXIT_FAILURE);
     game->map.height = height;
-    game->map.grid = malloc(sizeof(char *) * height);
+    game->map.grid = malloc(sizeof(char *) * height + 1);
     if (!game->map.grid)
         return (EXIT_FAILURE);
+    game->map.grid[height] = NULL;
     fd = open(file, O_RDONLY);
     if (fd < 0)
     {
@@ -84,6 +85,4 @@ int parse_map(const char *file, t_game *game)
     if (flood_fill(game)) 
         return (1);
     return (0);
-    
-    
 }

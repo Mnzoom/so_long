@@ -6,22 +6,23 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:27:03 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/05 12:34:07 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 21:00:25 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h" 
 
-void flood(char **map, int x, int y)
+void flood(char **map, int x, int y, t_game *game)
 {
-    if (map[y][x] == '1' || map[y][x] == 'V')
+    if (x < 0 || y < 0 || x >= game->map.width || y > game->map.height)
+        return;
+    if (map[y][x] == '1' || map[y][x] == 'V' || !map[y])
         return;
     map[y][x] = 'V';
-
-    flood(map, x + 1, y);
-    flood(map, x -1, y);
-    flood(map, x, y + 1);
-    flood(map, x, y - 1);
+    flood(map, x + 1, y, game);
+    flood(map, x -1, y, game);
+    flood(map, x, y + 1, game);
+    flood(map, x, y - 1, game);
 }
 
 char **copy_map(t_game *game)
@@ -29,10 +30,10 @@ char **copy_map(t_game *game)
     char **copy;
     int i;
 
-    copy = malloc(sizeof(char *) * game->map.height);
+    copy = malloc(sizeof(char *) * game->map.height + 1);
     if (!copy)
         return (NULL);
-
+    copy[game->map.height] = NULL;
     i = 0;
     while (i < game->map.height)
     {
@@ -77,7 +78,7 @@ int flood_fill(t_game *game)
     map_copy = copy_map(game);
     if (!map_copy)
         return (EXIT_FAILURE);
-    flood(map_copy, game->player.x, game->player.y);
+    flood(map_copy, game->player.x, game->player.y, game);
     result = check_acces(map_copy);
 
     int i = 0;
