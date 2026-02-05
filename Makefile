@@ -11,7 +11,7 @@ LIBS        = $(LIBFT_DIR)/libft.a $(PRINTF_DIR)/libftprintf.a
 
 SRCS        = main.c \
               parsing.c \
-              gameplay.c \
+              movement.c \
               pathfinding.c \
               is_map.c \
               sprite.c \

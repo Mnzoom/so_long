@@ -6,7 +6,7 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 14:38:23 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/05 12:34:34 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/05 14:14:00 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int load_textures(t_game *game)
     || load_sprite(game, &game->floor, "textures/floor.xpm")
     ||load_sprite(game, &game->player.sprite, "textures/player.xpm")
     ||load_sprite(game, &game->collectibles, "textures/item.xpm")
-    || load_sprite(game, &game->exit, "textures/exit.view.xpm"))
+    || load_sprite(game, &game->exit, "textures/exit.xpm"))
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }
