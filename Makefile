@@ -1,6 +1,6 @@
 NAME        = so_long
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -I. -I./mlx -I./libft -I./ft_printf -DGL_SILENCE_DEPRECATION
+CFLAGS      = -Wall -Wextra -Werror -I. -I./mlx -I./libft -I./ft_printf
 
 MLX_DIR     = ./mlx
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -lz
