@@ -1,6 +1,6 @@
 NAME        = so_long
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -I. -I./mlx -I./libft -I./ft_printf
+CFLAGS      = -Wall -Wextra -Werror -I. -I./mlx -I./libft -I./ft_printf -g3 
 
 MLX_DIR     = ./mlx
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -lz

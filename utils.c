@@ -6,7 +6,7 @@
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 18:55:29 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/02/05 12:33:38 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/02/11 15:23:13 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,17 @@ char	*get_next_line(int fd)
 		return (NULL);
 	backup = set_line(line);
 	return (line);
+}
+
+void free_grid(char **grid, int height)
+{
+    int i;
+
+    i = 0;
+    while (i < height)
+    {
+        free(grid[i]);
+        i++;
+    }
+    free(grid);
 }

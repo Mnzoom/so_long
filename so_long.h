@@ -78,5 +78,6 @@ int close_window(t_game *game);
 char	*read_doc(int fd, char *buf, char *backup);
 char	*set_line(char *line_buffer);
 char	*get_next_line(int fd);
+void free_grid(char **grid, int height);
 
 #endif
