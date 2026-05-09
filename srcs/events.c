@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 15:55:47 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/02 15:55:53 by cn-goie          ###   ########.fr       */
+/*   Created: 2026/05/09 16:04:17 by clementngoi       #+#    #+#             */
+/*   Updated: 2026/05/09 16:04:18 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/so_long.h"
 

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 15:56:26 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/02 16:07:25 by cn-goie          ###   ########.fr       */
+/*   Created: 2026/05/09 16:04:52 by clementngoi       #+#    #+#             */
+/*   Updated: 2026/05/09 16:04:53 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 void	init_textures(t_game *game)
 {

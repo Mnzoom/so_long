@@ -3,17 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+         #
+#    By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/02 16:02:38 by cn-goie           #+#    #+#              #
-#    Updated: 2026/05/02 16:05:59 by cn-goie          ###   ########.fr        #
+#    Created: 2026/05/09 16:05:47 by clementngoi       #+#    #+#              #
+#    Updated: 2026/05/09 16:59:01 by clementngoi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+DEF_COLOR = \033[0;39m
+YELLOW = \033[0;93m
+GREEN = \033[0;92m
 
 NAME          = so_long
 CC            = cc
-CFLAGS        = -Wall -Wextra -Werror
+CFLAGS        = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 LIBFT_DIR     = libft
 LIBFT         = $(LIBFT_DIR)/libft.a
@@ -21,8 +24,10 @@ LIBFT         = $(LIBFT_DIR)/libft.a
 PRINTF_DIR    = printf
 PRINTF        = $(PRINTF_DIR)/libftprintf.a
 
-MINILIBX_DIR  = minilibx-linux
-MINILIBX      = $(MINILIBX_DIR)/libmlx_Linux.a
+MINILIBX_DIR  = minilibx/minilibx_mac
+MINILIBX      = $(MINILIBX_DIR)/libmlx.a
+
+MLX_FLAGS     = -L$(MINILIBX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 INC           = -I includes -I $(LIBFT_DIR) -I $(PRINTF_DIR) -I $(MINILIBX_DIR)
 
@@ -43,20 +48,20 @@ OBJS         = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(PRINTF) $(MINILIBX) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MINILIBX) -L.. -Lmlx -lXext -lX11 -lm -o $(NAME)
-	@echo "$(NAME) generated"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
+	@echo "$(NAME)$(GREEN) generated"
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR) > /dev/null 2>&1
-	@echo "libft generated"
+	@echo "$(GREEN)libft generated"
 
 $(PRINTF):
 	@make -C $(PRINTF_DIR) > /dev/null 2>&1
-	@echo "printf generated"
+	@echo "$(GREEN)printf generated"
 
 $(MINILIBX):
 	@make -C $(MINILIBX_DIR) > /dev/null 2>&1
-	@echo "minilibx generated"
+	@echo "$(GREEN)minilibx generated"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
@@ -66,13 +71,13 @@ clean:
 	@make -C $(PRINTF_DIR) clean > /dev/null 2>&1
 	@make -C $(MINILIBX_DIR) clean > /dev/null 2>&1
 	@rm -f $(OBJS)
-	@echo "Objects cleaned"
+	@echo "$(YELLOW)Objects cleaned"
 
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean > /dev/null 2>&1
 	@make -C $(PRINTF_DIR) fclean > /dev/null 2>&1
 	@rm -f $(NAME)
-	@echo "$(NAME) removed"
+	@echo "$(NAME)$(YELLOW) removed"
 
 re: fclean all
 

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   map_verificator.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 15:56:46 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/02 15:56:49 by cn-goie          ###   ########.fr       */
+/*   Created: 2026/05/09 16:05:03 by clementngoi       #+#    #+#             */
+/*   Updated: 2026/05/09 16:48:07 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../includes/so_long.h"
 
-int	check_map_components(t_game *game)
+int	check_map(t_game *game)
 {
 	if (game->collectibles < 1)
 		return (
@@ -29,7 +30,7 @@ int	check_map_components(t_game *game)
 	return (EXIT_SUCCESS);
 }
 
-int	check_map_rectangular(t_game *game)
+int	check_map_rect(t_game *game)
 {
 	int	i;
 	int	j;
@@ -38,23 +39,21 @@ int	check_map_rectangular(t_game *game)
 	while (game->height > i)
 	{
 		j = 0;
-		while (game->map[i][j] != '\n')
+		while (game->map[i][j] != '\n' && game->map[i][j])
 			j++;
 		if (j != game->width)
-			return (ft_printf("Error\nThe map must be rectangular\n"),
+			return (ft_printf("Error !\nMap is not rectangular\n"),
 				EXIT_FAILURE);
 		i++;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	check_map_walls_inline(t_game *game)
+int	check_map_walls_in(t_game *game)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (game->width > i)
 	{
 		if (game->map[0][i] != '1' || game->map[game->height - 1][i] != '1')
@@ -86,13 +85,13 @@ int	check_map_walls(t_game *game)
 
 int	map_verificator(t_game *game)
 {
-	if (check_map_rectangular(game))
+	if (check_map_rect(game))
 		return (EXIT_FAILURE);
-	if (check_map_walls_inline(game))
+	if (check_map_walls_in(game))
 		return (EXIT_FAILURE);
 	if (check_map_walls(game))
 		return (EXIT_FAILURE);
-	if (check_map_components(game))
+	if (check_map(game))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

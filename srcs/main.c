@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 15:56:36 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/02 15:56:39 by cn-goie          ###   ########.fr       */
+/*   Created: 2026/05/09 16:04:56 by clementngoi       #+#    #+#             */
+/*   Updated: 2026/05/09 16:04:57 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/so_long.h"
 #include <stdio.h>

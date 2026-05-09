@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinding.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 15:57:02 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/02 15:57:04 by cn-goie          ###   ########.fr       */
+/*   Created: 2026/05/09 16:05:13 by clementngoi       #+#    #+#             */
+/*   Updated: 2026/05/09 16:05:14 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/so_long.h"
 
