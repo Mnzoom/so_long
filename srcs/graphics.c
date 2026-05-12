@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:52 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/09 16:04:53 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/05/12 12:51:21 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../../includes/so_long.h"
+#include "../includes/so_long.h"
 
 void	init_textures(t_game *game)
 {
@@ -23,7 +22,7 @@ void	init_textures(t_game *game)
 	game->tex_floor = mlx_xpm_file_to_image(game->mlx, "./textures/floor.xpm",
 			&w, &h);
 	game->tex_player_front = mlx_xpm_file_to_image(game->mlx,
-			"./textures/player_front.xpm", &w, &h);
+			"./textures/player_up.xpm", &w, &h);
 	game->tex_player_back = mlx_xpm_file_to_image(game->mlx,
 			"./textures/player_back.xpm", &w, &h);
 	game->tex_player_left = mlx_xpm_file_to_image(game->mlx,

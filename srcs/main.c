@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:56 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/09 16:04:57 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/05/12 12:51:26 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/so_long.h"
 #include <stdio.h>
@@ -69,8 +68,8 @@ int	main(int argc, char **argv)
 	game->win = mlx_new_window(game->mlx, game->width * game->tile_size,
 			game->height * game->tile_size, "so_long");
 	render_game(game);
-	mlx_hook(game->win, 2, 1L << 0, press_key, game);
-	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_hook(game->win, 2, 1L << 0, (int (*)())(void *)press_key, game);
+	mlx_hook(game->win, 17, 0, (int (*)())(void *)close_window, game);
 	mlx_loop(game->mlx);
 	return (EXIT_SUCCESS);
 }

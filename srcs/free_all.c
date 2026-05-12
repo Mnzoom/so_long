@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:33 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/09 16:40:40 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/05/12 12:51:01 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/so_long.h"
 
@@ -67,7 +66,7 @@ void	free_struct(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
-		//mlx_destroy_display(game->mlx);
+		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
 	free(game);

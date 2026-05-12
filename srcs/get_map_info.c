@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:37 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/09 16:04:38 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/05/12 12:51:12 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/so_long.h"
 #include <stdio.h>
