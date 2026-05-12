@@ -1,72 +1,111 @@
-DEF_COLOR = \033[0;39m
-YELLOW = \033[0;93m
-GREEN = \033[0;92m
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cn-goie <cn-goie@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/01 00:00:00 by student           #+#    #+#              #
+#    Updated: 2025/01/01 00:00:00 by student          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME          = so_long
-CC            = cc
-# Ajout de -Imlx pour être sûr que le compilateur trouve les headers pendant l'édition de liens
-CFLAGS        = -Wall -Wextra -Werror -g3
+NAME		=	so_long
 
-LIBFT_DIR     = libft
-LIBFT         = $(LIBFT_DIR)/libft.a
+# ─── Compiler ─────────────────────────────────────────────────────────────── #
 
-PRINTF_DIR    = printf
-PRINTF        = $(PRINTF_DIR)/libftprintf.a
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror
+RM			=	rm -f
 
-# Correction du chemin ici pour correspondre à ton tree
-MINILIBX_DIR  = minilibx/minilibx_lin
-# Correction : on utilise MINILIBX_DIR au lieu de MLX_PATH qui n'existait pas
-MLX_FLAGS     = -L$(MINILIBX_DIR) -lmlx -lX11 -lXext -lm
+# ─── Directories ──────────────────────────────────────────────────────────── #
 
-INC           = -I includes -I $(LIBFT_DIR) -I $(PRINTF_DIR) -I $(MINILIBX_DIR)
+SRCS_DIR	=	srcs
+OBJS_DIR	=	objs
+INC_DIR		=	includes
+LIBFT_DIR	=	libft
+PRINTF_DIR	=	printf
+MLX_DIR		=	minilibx
 
-SRCS_DIR      = srcs
-SRCS          = $(SRCS_DIR)/map_verificator.c \
-                $(SRCS_DIR)/get_next_line.c \
-                $(SRCS_DIR)/get_map_info.c \
-                $(SRCS_DIR)/pathfinding.c \
-                $(SRCS_DIR)/movements.c \
-                $(SRCS_DIR)/free_all.c \
-                $(SRCS_DIR)/graphics.c \
-                $(SRCS_DIR)/events.c \
-                $(SRCS_DIR)/main.c
+# ─── Sources ──────────────────────────────────────────────────────────────── #
 
-OBJS         = $(SRCS:.c=.o)
+SRCS		=	$(SRCS_DIR)/main.c			\
+				$(SRCS_DIR)/events.c		\
+				$(SRCS_DIR)/free_all.c		\
+				$(SRCS_DIR)/get_map_info.c	\
+				$(SRCS_DIR)/get_next_line.c	\
+				$(SRCS_DIR)/graphics.c		\
+				$(SRCS_DIR)/map_verificator.c	\
+				$(SRCS_DIR)/movements.c		\
+				$(SRCS_DIR)/pathfinding.c
 
-all: $(NAME)
+OBJS		=	$(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
+# ─── Libraries ────────────────────────────────────────────────────────────── #
 
-$(NAME): $(LIBFT) $(PRINTF) $(MINILIBX_DIR)/libmlx.a $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
-	@echo "$(NAME)$(GREEN) generated"
+LIBFT		=	$(LIBFT_DIR)/libft.a
+PRINTF		=	$(PRINTF_DIR)/libftprintf.a
+MLX			=	$(MLX_DIR)/libmlx_Linux.a
+
+# ─── Includes ─────────────────────────────────────────────────────────────── #
+
+INC			=	-I $(INC_DIR)			\
+				-I $(LIBFT_DIR)			\
+				-I $(PRINTF_DIR)/inc	\
+				-I $(MLX_DIR)
+
+# ─── Linker flags ─────────────────────────────────────────────────────────── #
+
+LDFLAGS		=	-L $(LIBFT_DIR) -lft			\
+				-L $(PRINTF_DIR) -lftprintf		\
+				-L $(MLX_DIR) -lmlx_Linux		\
+				-lX11 -lXext
+
+# ─── Colors ───────────────────────────────────────────────────────────────── #
+
+GREEN		=	\033[0;32m
+YELLOW		=	\033[0;33m
+CYAN		=	\033[0;36m
+RESET		=	\033[0m
+
+# ─── Rules ────────────────────────────────────────────────────────────────── #
+
+all:			$(NAME)
+
+$(NAME):		$(LIBFT) $(PRINTF) $(MLX) $(OBJS)
+				@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+				@echo "$(GREEN)✓ $(NAME) compiled successfully$(RESET)"
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+				@mkdir -p $(OBJS_DIR)
+				@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+				@echo "$(CYAN)  Compiling $<$(RESET)"
+
 $(LIBFT):
-	@make -C $(LIBFT_DIR)
-	@echo "$(GREEN)libft generated"
+				@echo "$(YELLOW)  Building libft...$(RESET)"
+				@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
 $(PRINTF):
-	@make -C $(PRINTF_DIR)
-	@echo "$(GREEN)printf generated"
+				@echo "$(YELLOW)  Building ft_printf...$(RESET)"
+				@$(MAKE) -C $(PRINTF_DIR) --no-print-directory
 
-# La règle pour compiler la MLX si le .a n'existe pas$(MINILIBX_DIR)/libmlx.a:
-	@echo "$(YELLOW)Compiling MinilibX..."
-	@make -C $(MINILIBX_DIR) > /dev/null 2>&1
-
-%.o: %.c
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(MLX):
+				@echo "$(YELLOW)  Building minilibx...$(RESET)"
+				@$(MAKE) -C $(MLX_DIR) --no-print-directory
 
 clean:
-	@make -C $(LIBFT_DIR) clean
-	@make -C $(PRINTF_DIR) clean
-	@make -C $(MINILIBX_DIR) clean
-	@rm -f $(OBJS)
-	@echo "$(YELLOW)Objects cleaned"
+				@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory
+				@$(MAKE) -C $(PRINTF_DIR) clean --no-print-directory
+				@$(MAKE) -C $(MLX_DIR) clean --no-print-directory
+				@$(RM) -r $(OBJS_DIR)
+				@echo "$(YELLOW)✓ Object files removed$(RESET)"
 
-fclean: clean
-	@make -C $(LIBFT_DIR) fclean
-	@make -C $(PRINTF_DIR) fclean
-	@rm -f $(NAME)
-	@echo "$(NAME)$(YELLOW) removed"
+fclean:			clean
+				@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory
+				@$(MAKE) -C $(PRINTF_DIR) fclean --no-print-directory
+				@$(RM) $(NAME)
+				@echo "$(YELLOW)✓ $(NAME) removed$(RESET)"
 
-re: fclean all
+re:				fclean all
 
-.PHONY: all clean fclean re
+.PHONY:			all clean fclean re

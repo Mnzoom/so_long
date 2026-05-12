@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:03:39 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/09 16:32:05 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/05/12 13:21:50 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define SO_LONG_H
 
 /* --- Librairies --- */
-# include "../libft/libft.h"
-# include "../minilibx/minilibx_linux/mlx.h"
-# include "../minilibx/minilibx_mac/mlx.h"
-# include "../printf/inc/ft_printf.h"
+# include "libft.h"
+# include "mlx.h"
+# include "ft_printf.h"
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdlib.h>
