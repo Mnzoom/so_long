@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:33 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/12 12:51:01 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/05/18 19:38:30 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,26 @@ void	free_struct(t_game *game)
 		free(game->mlx);
 	}
 	free(game);
+}
+
+void	free_textures(t_game *g)
+{
+	void	*tex[8];
+	int		i;
+
+	tex[0] = g->tex_wall;
+	tex[1] = g->tex_floor;
+	tex[2] = g->tex_player_front;
+	tex[3] = g->tex_player_back;
+	tex[4] = g->tex_player_left;
+	tex[5] = g->tex_player_right;
+	tex[6] = g->tex_collect;
+	tex[7] = g->tex_exit;
+	i = 0;
+	while (i < 8)
+	{
+		if (tex[i])
+			mlx_destroy_image(g->mlx, tex[i]);
+		i++;
+	}
 }

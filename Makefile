@@ -15,7 +15,7 @@ NAME		=	so_long
 # ─── Compiler ─────────────────────────────────────────────────────────────── #
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g3
 RM			=	rm -f
 
 # ─── Directories ──────────────────────────────────────────────────────────── #

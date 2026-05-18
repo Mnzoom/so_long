@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 13:40:05 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/12 13:42:30 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/05/18 19:25:55 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ int			close_window(void *p);
 void		free_map(t_game *game);
 void		free_map_pathfinding(t_map *map);
 void		free_struct(t_game *game);
+void		free_textures(t_game *g);
+void		close_game_error(t_game *g);
 
 /* --- Utils --- */
 char		*ft_substr(char const *s, unsigned int start, size_t len);

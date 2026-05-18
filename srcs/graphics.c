@@ -6,34 +6,52 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:52 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/12 12:51:21 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/05/18 19:28:11 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_textures(t_game *game)
+void	close_game_error(t_game *g)
+{
+	write(2, "Error\nTexture loading failed\n", 29);
+	free_textures(g);
+	if (g->map)
+		free_map(g);
+	if (g->win)
+		mlx_destroy_window(g->mlx, g->win);
+	if (g->mlx)
+	{
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+	}
+	free(g);
+	exit(1);
+}
+
+void	init_textures(t_game *g)
 {
 	int	w;
-	int	h;
 
-	game->tex_wall = mlx_xpm_file_to_image(game->mlx, "./textures/wall.xpm", &w,
-			&h);
-	game->tex_floor = mlx_xpm_file_to_image(game->mlx, "./textures/floor.xpm",
-			&w, &h);
-	game->tex_player_front = mlx_xpm_file_to_image(game->mlx,
-			"./textures/player_up.xpm", &w, &h);
-	game->tex_player_back = mlx_xpm_file_to_image(game->mlx,
-			"./textures/player_back.xpm", &w, &h);
-	game->tex_player_left = mlx_xpm_file_to_image(game->mlx,
-			"./textures/player_left.xpm", &w, &h);
-	game->tex_player_right = mlx_xpm_file_to_image(game->mlx,
-			"./textures/player_right.xpm", &w, &h);
-	game->tex_collect = mlx_xpm_file_to_image(game->mlx,
-			"./textures/collect.xpm", &w, &h);
-	game->tex_exit = mlx_xpm_file_to_image(game->mlx, "./textures/exit.xpm", &w,
-			&h);
-	game->tile_size = w;
+	g->tex_wall = mlx_xpm_file_to_image(g->mlx, "./textures/wall.xpm", &w, &w);
+	g->tex_floor = mlx_xpm_file_to_image(g->mlx, "./textures/floor.xpm", &w,
+			&w);
+	g->tex_player_front = mlx_xpm_file_to_image(g->mlx,
+			"./textures/player_up.xpm", &w, &w);
+	g->tex_player_back = mlx_xpm_file_to_image(g->mlx,
+			"./textures/player_back.xpm", &w, &w);
+	g->tex_player_left = mlx_xpm_file_to_image(g->mlx,
+			"./textures/player_left.xpm", &w, &w);
+	g->tex_player_right = mlx_xpm_file_to_image(g->mlx,
+			"./textures/player_right.xpm", &w, &w);
+	g->tex_collect = mlx_xpm_file_to_image(g->mlx, "./textures/collect.xpm", &w,
+			&w);
+	g->tex_exit = mlx_xpm_file_to_image(g->mlx, "./textures/exit.xpm", &w, &w);
+	if (!g->tex_wall || !g->tex_floor || !g->tex_player_front
+		|| !g->tex_player_back || !g->tex_player_left || !g->tex_player_right
+		|| !g->tex_collect || !g->tex_exit)
+		close_game_error(g);
+	g->tile_size = w;
 }
 
 void	render_tile(t_game *game, int x, int y)

@@ -6,12 +6,26 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:56 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/12 12:51:26 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/05/18 19:33:48 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include <stdio.h>
+
+static int	check_extension(char *path)
+{
+	int	len;
+
+	if (!path)
+		return (0);
+	len = ft_strlen(path);
+	if (len < 5)
+		return (0);
+	if (ft_strncmp(&path[len - 4], ".ber", 4) == 0)
+		return (1);
+	return (0);
+}
 
 int	check_valid_map_again(t_game *game)
 {
@@ -55,6 +69,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_printf("Error\nThe program need a map in argument\n"), 1);
+	if (!check_extension(argv[1]))
+		return (ft_printf("Error\nInvalid file extension (must be .ber)\n"), 1);
 	game = init_game(argv);
 	if (check_valid_map_again(game))
 		return (ft_printf("Error\nInvalid map\n"), free_struct(game), 1);

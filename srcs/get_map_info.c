@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 16:04:37 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/12 12:51:12 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/05/18 19:36:06 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	get_map_size(t_game *game)
 	if (!game->map || !game->map[0])
 	{
 		ft_printf("Error\nMap is empty or invalid\n");
+		free(game);
 		exit(EXIT_FAILURE);
 	}
 	width = ft_strlen(game->map[0]);
