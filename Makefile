@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cn-goie <cn-goie@student.42.fr>          +#+  +:+       +#+         #
+#    By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/01 00:00:00 by student           #+#    #+#              #
-#    Updated: 2025/01/01 00:00:00 by student          ###   ########.fr        #
+#    Created: 2026/05/20 11:21:21 by cn-goie           #+#    #+#              #
+#    Updated: 2026/05/20 11:25:14 by cn-goie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	so_long
+
+MAKEFLAGS += -s
 
 # ─── Compiler ─────────────────────────────────────────────────────────────── #
 
@@ -74,37 +76,37 @@ all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(PRINTF) $(MLX) $(OBJS)
 				@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
-				@echo "$(GREEN)✓ $(NAME) compiled successfully$(RESET)"
+				@printf "$(GREEN)✓ $(NAME) compiled successfully$(RESET)\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 				@mkdir -p $(OBJS_DIR)
 				@$(CC) $(CFLAGS) $(INC) -c $< -o $@
-				@echo "$(CYAN)  Compiling $<$(RESET)"
+				@printf "$(CYAN)  Compiling $<$(RESET)\n"
 
 $(LIBFT):
-				@echo "$(YELLOW)  Building libft...$(RESET)"
+				@printf "$(YELLOW)  Building libft...$(RESET)\n"
 				@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
 $(PRINTF):
-				@echo "$(YELLOW)  Building ft_printf...$(RESET)"
+				@printf "$(YELLOW)  Building ft_printf...$(RESET)\n"
 				@$(MAKE) -C $(PRINTF_DIR) --no-print-directory
 
 $(MLX):
-				@echo "$(YELLOW)  Building minilibx...$(RESET)"
-				@$(MAKE) -C $(MLX_DIR) --no-print-directory
+				@printf "$(YELLOW)  Building minilibx...$(RESET)\n"
+				@$(MAKE) -C $(MLX_DIR) --no-print-directory > /dev/null 2>&1
 
 clean:
 				@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory
 				@$(MAKE) -C $(PRINTF_DIR) clean --no-print-directory
-				@$(MAKE) -C $(MLX_DIR) clean --no-print-directory
+				@$(MAKE) -C $(MLX_DIR) clean --no-print-directory > /dev/null 2>&1
 				@$(RM) -r $(OBJS_DIR)
-				@echo "$(YELLOW)✓ Object files removed$(RESET)"
+				@printf "$(YELLOW)✓ Object files removed$(RESET)\n"
 
 fclean:			clean
 				@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory
 				@$(MAKE) -C $(PRINTF_DIR) fclean --no-print-directory
 				@$(RM) $(NAME)
-				@echo "$(YELLOW)✓ $(NAME) removed$(RESET)"
+				@printf "$(YELLOW)✓ $(NAME) removed$(RESET)\n"
 
 re:				fclean all
 
